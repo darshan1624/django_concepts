@@ -2,7 +2,7 @@
 2) How django identifies which migratiion file is missing?
 3) diff between null=True, blank =True 
 4) purpose of utils.py
-5) What is objects in student.objects.all(hint:model manager)
+5) What is objects in student.objects.all(hint:model manager) 
 
 
 
