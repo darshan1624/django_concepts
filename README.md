@@ -33,3 +33,4 @@ This project contains files that may explain the concepts learned via some cours
     1)Car.objects.get(id=1).delete()
     Car.objects.all().delete()
 
+9) Created a new app receipe. 
