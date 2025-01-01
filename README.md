@@ -42,3 +42,4 @@ This project contains files that may explain the concepts learned via some cours
     5) Added html table to receipe page to view added receipes. 
     6) Added a delete button to delete added receipe. 
     7) Added a update button. created a webpage form to update receipe.
+    8) Create a search bar.

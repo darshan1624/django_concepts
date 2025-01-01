@@ -15,8 +15,13 @@ def receipe(request):
 
 
         return redirect('/receipe')
-
+    
     all_receipes = Receipe.objects.all()
+
+    search_query = request.GET.get('search_receipe') 
+    if search_query:
+        all_receipes = all_receipes.filter(receipe_name__icontains = search_query)
+
     context = {'all_receipes': all_receipes} 
 
     return render(request, 'receipe/receipe.html', context)
