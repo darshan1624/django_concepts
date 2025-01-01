@@ -38,3 +38,6 @@ This project contains files that may explain the concepts learned via some cours
     2) created a html page with form. 
     3) views.py setup. (used return redirect('/'). So, that form data doesnt reload).
     4) To handle media files, extra configuration done in settings.py (MEDIA_URL, MEDIA_ROOT) and urls.py. 
+      This config allows to setup media url via which media files can be accesed. 
+    5) Added html table to receipe page to view added receipes. 
+    6) Added a delete button to delete added receipe. 

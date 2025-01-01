@@ -11,7 +11,7 @@
     <title>Hello, world!</title>
   </head>
   <body class="container mt-5">
-  <form class="col-6 mx-auto card p-3 shadow-lg" method="post" enctype="multipart/form-data">
+  <form class="col-6 mx-auto card p-3 shadow-lg" action='/receipe/' method="post" enctype="multipart/form-data">
     {% csrf_token %}
     <h2>Add Receipe</h2>
     <div class="form-group">
@@ -31,6 +31,31 @@
     </div>
     <button type="submit" class="btn btn-success">Submit</button>
 </form>
+
+{% if all_receipes %}
+<table class="table table-bordered">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Receipe</th>
+      <th scope="col">Description</th>
+      <th scope="col">Image</th>
+      <th scope="col">Remove</th>
+    </tr>
+  </thead>
+  {% endif %}
+  <tbody>
+    {% for receipe in all_receipes %}
+    <tr>
+      <th scope="row">{{forloop.counter}}</th>
+      <td>{{receipe.receipe_name}}</td>
+      <td>{{receipe.desc}}</td>
+      <td><img src="/media/{{receipe.image}}" alt="noimage" style="height:100px"></td>
+      <td><a href="delete/{{receipe.id}}/" class="btn btn-danger"> Delete </a></td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->

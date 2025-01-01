@@ -5,6 +5,7 @@
 5) What is objects in student.objects.all(hint:model manager) 
 6) How to setup media files(images, videos, document) in django. 
 7) Why to avoid uplaoding media files directly via django server.  
+8) Why CDN is used to uplaod files (like amazon s3.) What is CDN.
 
 
 

@@ -129,6 +129,6 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 TIME_ZONE = 'Asia/Kolkata'
 USE_TZ = True
 
-
+# This creates a media url via which media files can be accessed.
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR/'media'

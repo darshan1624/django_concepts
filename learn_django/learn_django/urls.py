@@ -26,6 +26,7 @@ urlpatterns = [
     path('receipe/', include('receipe.urls'))
 ]
 
+#To return media file via media url this setting is done.
 if settings.DEBUG:
     urlpatterns += static(MEDIA_URL,
                           document_root=MEDIA_ROOT)
