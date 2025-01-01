@@ -34,3 +34,7 @@ This project contains files that may explain the concepts learned via some cours
     Car.objects.all().delete()
 
 9) Created a new app receipe. 
+    1) Created a model receipe. (name, desc, image) 
+    2) created a html page with form. 
+    3) views.py setup. (used return redirect('/'). So, that form data doesnt reload).
+    4) To handle media files, extra configuration done in settings.py (MEDIA_URL, MEDIA_ROOT) and urls.py. 

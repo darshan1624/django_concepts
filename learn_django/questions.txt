@@ -3,6 +3,8 @@
 3) diff between null=True, blank =True 
 4) purpose of utils.py
 5) What is objects in student.objects.all(hint:model manager) 
+6) How to setup media files(images, videos, document) in django. 
+7) Why to avoid uplaoding media files directly via django server.  
 
 
 
