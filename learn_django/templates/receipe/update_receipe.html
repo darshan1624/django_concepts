@@ -10,18 +10,18 @@
 
     <title>Hello, world!</title>
   </head>
-  <body class="container">
-  <form class="col-6 mx-auto card p-3 shadow-lg my-5" action='/receipe/' method="post" enctype="multipart/form-data">
+  <body class="container mt-5">
+  <form class="col-6 mx-auto card p-3 shadow-lg" method="post" enctype="multipart/form-data">
     {% csrf_token %}
-    <h2>Add Receipe</h2>
+    <h2>Update Receipe</h2>
     <div class="form-group">
         <label for="exampleInputEmail1">Receipe name</label>
-        <input name="receipe_name" type="text" class="form-control" required>
+        <input name="receipe_name" value='{{receipe_to_update.receipe_name}}' type="text" class="form-control" required>
     </div>
 
     <div class="form-group">
         <label for="exampleInputPassword1">Receipe decsription</label>
-        <textarea name="desc" class="form-control" required></textarea>
+        <textarea name="desc" class="form-control" required>{{receipe_to_update.desc}}</textarea>
     </div>
 
     <div class="form-check">
@@ -31,34 +31,6 @@
     </div>
     <button type="submit" class="btn btn-success">Submit</button>
 </form>
-
-{% if all_receipes %}
-<hr>
-<table class="table table-bordered mt-5">
-  <thead>
-    <tr>
-      <th scope="col">#</th>
-      <th scope="col">Receipe</th>
-      <th scope="col">Description</th>
-      <th scope="col">Image</th>
-      <th scope="col">Remove</th>
-    </tr>
-  </thead>
-  {% endif %}
-  <tbody>
-    {% for receipe in all_receipes %}
-    <tr>
-      <th scope="row">{{forloop.counter}}</th>
-      <td>{{receipe.receipe_name}}</td>
-      <td>{{receipe.desc}}</td>
-      <td><img src="/media/{{receipe.image}}" alt="noimage" style="height:100px"></td>
-      <td>
-        <a href="delete/{{receipe.id}}/" class="btn btn-danger mb-1"> Delete </a>
-        <a href="update/{{receipe.id}}/" class="btn btn-success"> Update </a>
-      </td>
-    </tr>
-    {% endfor %}
-  </tbody>
 </table>
 
     <!-- Optional JavaScript -->
