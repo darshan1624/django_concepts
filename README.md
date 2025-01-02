@@ -43,3 +43,4 @@ This project contains files that may explain the concepts learned via some cours
     6) Added a delete button to delete added receipe. 
     7) Added a update button. created a webpage form to update receipe.
     8) Create a search bar. Used __icontains query filter.
+    9) Created register form. Used User builtin in model.

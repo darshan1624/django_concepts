@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from receipe.models import Receipe
 from django.http import HttpResponse
+from django.contrib.auth.models import User
 
 # Create your views here.
 
@@ -46,3 +47,25 @@ def update_receipe(request, id):
 
     context = {'receipe_to_update':receipe_to_update}
     return render(request, 'receipe/update_receipe.html', context)
+
+
+def login(request):
+    return render(request, 'receipe/login.html')
+
+def register(request):
+    if request.method == 'POST':
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+
+        # If we metions password in create it wont encrypt
+        # If username is duplicate it will throw an error
+        user = User.objects.create(
+            username = username
+        )
+
+        # If we use set_password it will encrypt
+        user.set_password(password)
+        user.save()
+        
+        return redirect('/receipe/register')
+    return render(request, 'receipe/register.html')
