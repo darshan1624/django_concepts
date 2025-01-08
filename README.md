@@ -43,4 +43,12 @@ This project contains files that may explain the concepts learned via some cours
     6) Added a delete button to delete added receipe. 
     7) Added a update button. created a webpage form to update receipe.
     8) Create a search bar. Used __icontains query filter.
-    9) Created register form. Used User builtin in model.
+    9) Created register form. 
+        1) Used 'User' builtin in model. 
+        2) Used .set_password() fucntion to encrypt password.  
+        3) user.exits() to see if user exists.
+        4) Used user.authenticate() to verify password
+        5) Used user.login() to create session for the user 
+        5) Created success,error dismissible prompts using bootstrap. Used django message framework.
+
+    

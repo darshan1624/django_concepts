@@ -11,6 +11,15 @@
     <title>Hello, world!</title>
   </head>
   <body class="container">
+    {% for message in messages %}
+    <div class="alert alert-{{message.tags}} mb-0 alert-dismissible fade show my-2" role="alert">
+      <strong> </strong> {{message}}
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    {% endfor %}
+
   <form class="col-6 mx-auto card p-3 shadow-lg my-5" action='/receipe/' method="post" enctype="multipart/form-data">
     {% csrf_token %}
     <h2>Add Receipe</h2>

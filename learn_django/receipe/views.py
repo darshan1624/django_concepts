@@ -2,6 +2,8 @@ from django.shortcuts import render, redirect
 from receipe.models import Receipe
 from django.http import HttpResponse
 from django.contrib.auth.models import User
+from django.contrib.auth import authenticate, login, logout
+from django.contrib import messages
 
 # Create your views here.
 
@@ -49,7 +51,24 @@ def update_receipe(request, id):
     return render(request, 'receipe/update_receipe.html', context)
 
 
-def login(request):
+def login_page(request):
+    if request.method == 'POST':
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+
+        if not User.objects.filter(username = username):
+            messages.error(request, 'User doesnt exists with this username.')
+            return redirect('/login/')
+        
+        user = authenticate(username=username, password=password)
+        if user is None:
+            messages.error(request, 'Please enter correct password.')
+            return redirect('/login/')
+        else:
+            login(request, user)
+            messages.success(request, 'Login successfully.')
+            return redirect('/receipe/')
+
     return render(request, 'receipe/login.html')
 
 def register(request):
@@ -57,8 +76,15 @@ def register(request):
         username = request.POST.get('username')
         password = request.POST.get('password')
 
+        print(username, password)
+
         # If we metions password in create it wont encrypt
         # If username is duplicate it will throw an error
+        user =  User.objects.filter(username = username)
+        if user.exists():
+            messages.error(request, 'Error: User already exists.')
+            return redirect('/register/')
+
         user = User.objects.create(
             username = username
         )
@@ -67,5 +93,5 @@ def register(request):
         user.set_password(password)
         user.save()
         
-        return redirect('/receipe/register')
+        return redirect('/register/')
     return render(request, 'receipe/register.html')
