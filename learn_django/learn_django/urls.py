@@ -19,11 +19,12 @@ from django.urls import path, include
 from django.conf import settings
 from learn_django.settings import MEDIA_URL, MEDIA_ROOT
 from django.conf.urls.static import static
-from receipe.views import login_page, register
+from receipe.views import login_page, register, logout_page
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('login/', login_page, name='receipe'), 
+    path('login/', login_page, name='login'), 
+    path('logout/', logout_page, name='logout'),
     path('register/', register, name='receipe'),    
     path('', include('basics.urls')),
     path('receipe/', include('receipe.urls'))

@@ -4,9 +4,10 @@ from django.http import HttpResponse
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
-
+@login_required(login_url="/login/")
 def receipe(request):
     if request.method == 'POST':
         receipe_name = request.POST.get('receipe_name')
@@ -70,6 +71,11 @@ def login_page(request):
             return redirect('/receipe/')
 
     return render(request, 'receipe/login.html')
+
+def logout_page(request):
+    logout(request)
+    return redirect('/login/')
+
 
 def register(request):
     if request.method == 'POST':

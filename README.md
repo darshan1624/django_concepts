@@ -50,5 +50,6 @@ This project contains files that may explain the concepts learned via some cours
         4) Used user.authenticate() to verify password
         5) Used user.login() to create session for the user 
         5) Created success,error dismissible prompts using bootstrap. Used django message framework.
-
+        6) Used Logout() to remove session for the user 
+        7) Used @login_decorator(login_url='/login/') to redirect to login page 
     
