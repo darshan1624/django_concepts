@@ -52,4 +52,12 @@ This project contains files that may explain the concepts learned via some cours
         5) Created success,error dismissible prompts using bootstrap. Used django message framework.
         6) Used Logout() to remove session for the user 
         7) Used @login_decorator(login_url='/login/') to redirect to login page 
-    
+  
+10) Django ORM queries. Created a model Bikes.
+    a)   .order_by('receipe_view_count')            
+    b)   .order_by('-receipe_view_count')     # for descending order put - sign  
+    c)   If want to limit use slicing .order_by('-receipe_view_count')[0:10]
+    d)   .filter(receipe_view_count = 55)
+    e)   .filter(receipe_view_count__gte = 55)     # greater than or equal to 
+    f)   .filter(receipe_view_count__lte = 55)
+

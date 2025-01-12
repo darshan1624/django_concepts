@@ -14,3 +14,13 @@ class Receipe(models.Model):
 
     def __str__(self):
         return self.receipe_name
+
+class Bikes(models.Model):
+    user = models.ForeignKey(User, models.SET_NULL, blank=True, null=True)
+    bike_name = models.CharField(max_length=100)
+    desc = models.CharField(max_length=800)
+    bike_mileage = models.IntegerField(default=20)
+    image = models.FileField(upload_to='receipe/')
+
+    def __str__(self):
+        return self.bike_name
