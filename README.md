@@ -62,3 +62,71 @@ This project contains files that may explain the concepts learned via some cours
     f)   .filter(receipe_view_count__lte = 55)
 
 11) Generated fake data using faker library for models studentID, students. Used Random also to assign department. Create query in seed.py.   
+
+12) Django QuerySet
+    1) Student.objects.filter(student_name__startswith = 'an')
+    2) Student.objects.filter(student_name__endswith = 'it')
+    3) Student.objects.filter(student_name__icontains = 'ka')
+    
+    4) By default we have a primary key in models and can be found with id,pk.
+    queryset = Student.objects.filter(student_name__icontains = 'ay')
+    //Only on single object can be applied 
+    queryset[0].id 
+    queryset.first().pk
+
+    5) With foreign key you can refrence/find all the column values of refrenced model (department).  
+    queryset = Student.objects.filter(student_name__startswith = 'an')
+    > queryset[0].department 
+    ==> <Department: Comps> will return object since its a foreign key 
+    > queryset[0].department.department
+    ==> Will return value 'Comps'.
+    > query_set[0].department.id ==> 1
+
+    6) We can also refrence to forign key in query set 
+    > Student.objects.filter(department__department = 'Comps')
+    But if you do 
+    > Student.objects.filter(department = 'Comps')
+    ==> ValueError: Field 'id' expected a number but got 'Comps'.
+    Beacuse, department in Student table is foreign key. 
+    > Student.objects.filter(department = 1) ==> will work 
+
+    if want to apply django function also 
+    > Student.objects.filter(department__department__icontains = 'Co')
+
+    7) Find all the students belongs to ELEC, CHEM.
+    __in is used to iterate over list 
+    > Student.objects.filter(department__department__in = ['ELEC', 'CHEM']) 
+
+    8) Find all the students who do not belongs to ELEC
+    > Student.objects.exclude(department__department = 'ELEC')
+
+    9) queryset = Student.objects.exclude(department__department = 'ELEC')
+    query_set.count()  //len(query_set) also works 
+    ==> 88
+    count of objects return from queryset. 
+
+    10) query_set = Student.objects.filter(department__department__in = ['AERO'])
+    query_set.exists()
+    ==> False   //returns true when returns any object 
+
+    11) Student.objects.filter(student_age = 21).values()
+    this serializes the data or returns the data in dict form. Used when want to send data in json form 
+
+    Aggregate Operations:
+    // Only applied one column at a time.
+    1) Student.objects.aggregate(Sum('student_age'))
+    2) Student.objects.aggregate(Max('student_age'))
+    3) Student.objects.aggregate(Min('student_age'))
+    4) Student.objects.aggregate(Avg('student_age'))
+
+    Annotate Operations: 
+    // Used to perform aggregate on more than one column 
+    1) Student.objects.values('student_age').annotate(Count('student_age'))
+    annotate groupby on whatever column metioned in values() and perform Count for each group. 
+
+
+
+
+
+    
+
