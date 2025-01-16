@@ -61,3 +61,4 @@ This project contains files that may explain the concepts learned via some cours
     e)   .filter(receipe_view_count__gte = 55)     # greater than or equal to 
     f)   .filter(receipe_view_count__lte = 55)
 
+11) Generated fake data using faker library for models studentID, students. Used Random also to assign department. Create query in seed.py.   
