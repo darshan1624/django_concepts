@@ -124,6 +124,19 @@ This project contains files that may explain the concepts learned via some cours
     1) Student.objects.values('student_age').annotate(Count('student_age'))
     annotate groupby on whatever column metioned in values() and perform Count for each group. 
 
+13) Report Card proj:
+    1) Create table Subject(subject)
+    Create table SubjectMarks(subject, student, marks)
+    foreign key (subject, student)
+    used unique_together = ['student', 'subject']
+
+    2) Add entries in SubjectMarks. Written logic in seed.py
+
+    3) Writen view to to get students from Student table 
+    Create html page to view Students 
+
+    4) Implemented Pagination. Used library Paginator. 
+    used functions .get_page(), .num_pages
 
 
 

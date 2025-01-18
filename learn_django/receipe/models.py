@@ -56,3 +56,23 @@ class Student(models.Model):
     class Meta:
         ordering = ['student_name']
         verbose_name = 'Student1'
+
+
+class Subject(models.Model):
+    subject  = models.CharField(max_length=200)
+
+    def __str__(self):
+        return self.subject
+
+class StudentMarks(models.Model):
+    student = models.ForeignKey(Student, related_name='studentmarks', on_delete = models.CASCADE)
+    subject = models.ForeignKey(Subject, on_delete = models.CASCADE)
+    marks = models.IntegerField()
+
+    class Meta:
+        unique_together = ['student', 'subject']
+    
+    def __str__(self):
+        return f'student: {self.student}, subject: {self.subject}'
+
+

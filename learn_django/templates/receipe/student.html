@@ -1,0 +1,41 @@
+{% extends 'receipe_base.html' %}
+
+{% block body %}
+<table class="table table-striped my-2">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">department</th>
+        <th scope="col">student_name</th>
+        <th scope="col">student_email</th>
+        <th scope="col">student_age</th>
+        <th scope="col">student_address</th>
+      </tr>
+    </thead>
+    <tbody>
+    {% for student in page_obj%}
+      <tr>
+        <th scope="row">{{forloop.counter}}</th>
+        <td>{{student.department.department}}</td>
+        <td>{{student.student_name}}</td>
+        <td>{{student.student_email}}</td>
+        <td>{{student.student_age}}</td>
+        <td>{{student.student_address}}</td>
+    {% endfor %}
+    </tr>
+    </tbody>
+</table>
+
+    <nav aria-label="Page navigation example">
+        <ul class="pagination">
+                
+            {% for page_number in total_pages%}
+            <li class="page-item"><a class="page-link" href="?page={{page_number}}">{{page_number}}</a></li>
+            {% endfor %}
+
+            <span class="current">
+                Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+            </span>
+    </ul>
+</nav>
+{% endblock %}
