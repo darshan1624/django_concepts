@@ -138,6 +138,9 @@ This project contains files that may explain the concepts learned via some cours
     4) Implemented Pagination. Used library Paginator. 
     used functions .get_page(), .num_pages
 
+    5) Created a search bar form, to query specific values from table. 
+    Used Q (from django.db.models import Q) to apply multiple OR conditons on diff columns.
+
 
 
 
