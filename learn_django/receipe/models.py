@@ -76,3 +76,12 @@ class StudentMarks(models.Model):
         return f'student: {self.student}, subject: {self.subject}'
 
 
+class Rank(models.Model):
+    student = models.ForeignKey(Student, related_name = 'studentranks', on_delete = models.CASCADE)
+    student_rank = models.IntegerField()
+    date_of_report_card_generation = models.DateField(auto_now_add=True)
+
+    class Meta:
+        unique_together = ['student_rank', 'date_of_report_card_generation']
+
+

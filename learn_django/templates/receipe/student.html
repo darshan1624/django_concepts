@@ -17,6 +17,7 @@
     <thead>
       <tr>
         <th scope="col">#</th>
+        <th scope="col">student_id</th>
         <th scope="col">department</th>
         <th scope="col">student_name</th>
         <th scope="col">student_email</th>
@@ -28,6 +29,7 @@
     {% for student in page_obj%}
       <tr>
         <th scope="row">{{forloop.counter}}</th>
+        <td><a href="{% url 'see_marks' student.student_id %}">{{student.student_id.studentid}}</a></td>  
         <td>{{student.department.department}}</td>
         <td>{{student.student_name}}</td>
         <td>{{student.student_email}}</td>

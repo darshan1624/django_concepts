@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from receipe.models import Receipe
+from receipe.models import Receipe, StudentMarks
 from django.http import HttpResponse
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
@@ -7,7 +7,7 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from . models import Student
 from django.core.paginator import Paginator
-from django.db.models import Q
+from django.db.models import Q, Sum
 
 # Create your views here.
 @login_required(login_url="/login/")
@@ -124,4 +124,26 @@ def get_students(request):
 
     context = {'page_obj':page_obj, 'total_pages':total_pages} 
     return render(request, 'receipe/student.html', context)
+
+def see_marks(request, student_id):
+    student_marks = StudentMarks.objects.filter(student__student_id__studentid = student_id)
+    total_marks = student_marks.aggregate(Sum('marks'))['marks__sum']
+    # ranks = Student.objects.annotate(total_marks = Sum('studentmarks__marks')).order_by('total_marks', 'student_age')
+  
+
+    # current_rank = -1
+    # i = 1 
+    # for rank in ranks:
+    #     if student_id == rank.student_id.studentid:
+    #         current_rank = i
+    #         break   
+    #     i = i + 1
+
+
+    # context = {'student_marks':student_marks, 'total_marks':total_marks, 'rank':current_rank}
+    context = {'student_marks':student_marks, 'total_marks':total_marks}
+    return render(request, 'receipe/see_marks.html', context)
+
+
+
 

@@ -141,8 +141,13 @@ This project contains files that may explain the concepts learned via some cours
     5) Created a search bar form, to query specific values from table. 
     Used Q (from django.db.models import Q) to apply multiple OR conditons on diff columns.
 
+    6) Create a seperate html page to see_marks of individual student. Show subject, marks. Total marks (sum every subj), rank. Create view for same. Used aggregate to get total marks. 
 
-
+    7) To find rank. first identified total marks of each student, using annotate. Then sorted marks in descending order, then used for loop with counter to indetify rank.
+    Since, above appraoch requires rank to be indetifed each time, when someone looks for particular student marks.
+    So, we stored rank in model Rank(student, student_rank, date_of_report_card_generation). 
+    Created function student_ranks in seed.py to add ranks to each student. 
+    Now once we have the id of student we can identify rank of the student. 
 
     
 
