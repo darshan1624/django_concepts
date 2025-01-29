@@ -149,5 +149,34 @@ This project contains files that may explain the concepts learned via some cours
     Created function student_ranks in seed.py to add ranks to each student. 
     Now once we have the id of student we can identify rank of the student. 
 
-    
+14) Custom User Model 
+    Django provides two type of classes
+    1) abstract user class   (django fields/Columns + new fileds)
+    2) abstact baseuser class (create from scratch only will get username, password)
 
+    Write model manager  
+    So, that django know to create additonal field for user menitoned in customUser.
+    Otherwise when u excute createuser it wont create other fields.
+
+    To write model manager. Create new file manager.py in app (on level of views, models,..)
+    from django.contrib.auth.base_user import BaseUserManager
+    Create a class UserManger(BaseUserManager):
+
+    Now just like creatsuperuser we have two other functions 
+    1) create_user
+    2) create super_user 
+
+    customize both functions. 
+    pass required params 
+ 
+    In settings.py need to mention the customUser model you created. 
+
+    AUTH_USER_MODEL = 'appname.CustomUser'
+
+    //Now u may face import issues if already using defaul user model of django
+    // in other views or other apps.
+
+    To switch to customUser model for other apps, import customUser
+    from django.contrib.auth import get_user_model 
+
+    User = get_user_model()
