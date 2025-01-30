@@ -6,6 +6,12 @@ User = get_user_model()
 
 # Create your models here.
 
+class ReceipeManager(models.Manager):
+    def get_queryset(self):
+        #get_queryset() is a method in Django's model manager that defines the default QuerySet returned when querying the model
+        # Here we are overriding it. 
+        return super().get_queryset().filter(is_deleted = False)
+
 class Receipe(models.Model):
     user = models.ForeignKey(User, models.SET_NULL, blank=True, null=True)
     # models.CASCADE = delete all the receipes realted to the user
@@ -52,6 +58,10 @@ class Student(models.Model):
     student_email = models.EmailField(unique=True)
     student_age = models.IntegerField(default=18)
     student_address = models.CharField(max_length=800)
+    is_deleted= models.BooleanField(default=False)
+
+    objects = ReceipeManager()
+    admin_objects = models.Manager()
 
     def __str__(self):
         return self.student_name

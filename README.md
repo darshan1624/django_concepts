@@ -180,3 +180,37 @@ This project contains files that may explain the concepts learned via some cours
     from django.contrib.auth import get_user_model 
 
     User = get_user_model()
+
+
+15) Object Manager 
+    Why to swap object manager ?  
+    How to swap object manager ?
+
+    1) Why to swap object manager ?  
+    suppose you have 1,00,000 students in Student table. Now suppose few 
+    records should not be shown to users but only admin. 
+    let there be column is_deleted. If Fase show, else dont.
+    In that case: 
+        You can filte using student.objects.filter(is_deleted = False)
+    But if u have already written a long code. You cant change every where ur 
+    orm query to student.objects.filter(is_deleted = False). 
+
+    Instead swap object manager. 
+        
+    How to swap object manager ?
+    2) create Model manager
+    class ReceipeManager(models.Manager):
+        def get_queryset(self):
+            return super().get_queryset().filter(is_deleted = False)
+
+    This class will return only is_deleted = False records 
+
+    3) Now to swap object manager. 
+    In Student model write 
+    objects =ReceipeManager()
+    admin_objects = models.Manager()
+
+    Now when you type Student.objects.all(). It will give you records filterd
+    is_deleted = False 
+    If you all records type Student.admin_objects.all()
+
